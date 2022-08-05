@@ -16,31 +16,26 @@
  
   it('displays the "mudar o mundo" session', () => {
     cy.visit('https://pushstart.com.br/pt-BR/blog/category/mudar-o-mundo')
-    cy.get('body').find('article')
+    .get('body').find('article')
   })
 
   it('searches for "São Paulo"', () => {
     cy.get('[placeholder^=Pesquise]').focus()
-    cy.focused().type('São Paulo')
-    cy.focused().parent().find('button').click()
-    cy.get('body').find('article')
+    .focused().type('São Paulo')
+    .focused().parent().find('button').click()
+    .get('body').find('article')
   })
 
-  it('searches for "xjfdfis8fgsd"', () => {
+  it('searches for "Campinas"', () => {
     cy.get('[placeholder^=Pesquise]').focus()
-    cy.focused().type('xjfdfis8fgsd')
-    cy.focused().parent().find('button').click()
-    cy.get('body').contains('Oops')
+    .focused().type('Campinas{enter}')
+    .get('body').contains('Oops')
   })
 
   it('verifies articles categories', () => {
     cy.get('a').contains('Engajamento').click()
-    cy.get('body').find('article').then(($articles) => { 
-      const engaja = cy.get('article').contains('Engajamento').length
+    cy.get('body').find('article').each(($li, index, $lis) => {
+      cy.get($li).contains('Engajamento')
+    })
+  })
 
-        if($articles.length != engaja){
-          throw console.error();
-        }
-      })
-  }
-    )
