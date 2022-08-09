@@ -26,6 +26,7 @@
     "nonGlobalStepDefinitions": true
   },
   "devDependencies": {
+    "@playwright/test": "^1.24.2",
     "@vitejs/plugin-react": "^1.0.7",
     "autoprefixer": "^10.4.2",
     "cypress": "^10.4.0",
